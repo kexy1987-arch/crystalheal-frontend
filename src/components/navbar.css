@@ -1,0 +1,40 @@
+#main{
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(to bottom, rgb(189, 0, 189), rgb(253, 215, 253));
+    color: rgb(75, 0, 75);
+    height: 50px;
+    padding: 5px 10px;
+    text-align: center;
+    z-index: 5;
+}
+
+
+#btn-container{
+    margin: auto 5px auto 0;
+}
+
+#title{
+    font-size: 2rem;
+    font-weight: 600;
+    margin: auto 0;
+    font-family: "Bonheur Royale", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.nav-btn{
+    padding: 2px;
+    border-radius: 5px;
+    border: 2px solid fuchsia;
+    font-family: "Bonheur Royale", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.2rem;
+    margin-left: 2px;
+
+}
+
+.nav-btn:hover {
+    background: radial-gradient(circle at top right, pink, rgb(219, 0, 219));
+}
