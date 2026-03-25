@@ -7,6 +7,11 @@ export default function Success(){
             window.location.href = "/shop";
         };
     }, []);
+    document.addEventListener("click", () => {
+        window.location.href = "/shop";
+
+    })
+
     return(
         <div id='success' className='font'>
             <p>The payment was succesful. A receipt has been sent to your e-mail address.</p>

@@ -505,3 +505,15 @@ nav {
     margin: auto;
     border-radius: 10px;
 }
+
+.loading{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(105, 0, 105);
+    padding: 50px;
+    background-color: rgb(251, 140, 255);
+    border-radius: 30px;
+    box-shadow: 0px 0px 80px rgb(94, 1, 97);
+}

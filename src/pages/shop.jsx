@@ -18,6 +18,7 @@ export default function Shop() {
     const [alert, setAlert] = useState('')
     const [isAlertHidden, setIsAlertHidden] = useState(true);
     const API = import.meta.env.VITE_API_URL;
+    const [isLoading, setIsLoading] = useState(false);
 
     
     useEffect(() => {
@@ -26,6 +27,7 @@ export default function Shop() {
             .then(data => 
                 {
                     setDatabase(data)
+                    setIsLoading(true)
                 }
         )
     }, [API])
@@ -158,6 +160,9 @@ export default function Shop() {
                 <div id='alert-container'>
                     <p className='font'>{alert}</p>
                 </div>
+            </section>
+            <section className='loading font' hidden={isLoading}>
+                <div>...Loading</div>
             </section>
         </section>
     )

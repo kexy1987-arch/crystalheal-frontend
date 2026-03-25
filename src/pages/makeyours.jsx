@@ -1,5 +1,4 @@
 import {useState, useEffect} from 'react';
-import {Link} from 'react-router-dom'
 
 export default function MakeYours() {
     const [custom, setCustom] = useState([]);
@@ -9,11 +8,15 @@ export default function MakeYours() {
     const [showHidden, setShowHidden] = useState(true);
     const [item, setItem] = useState('');
     const API = import.meta.env.VITE_API_URL;
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         fetch(`${API}/products`)
             .then(res => res.json())
-            .then(data => setDatabase(data))
+            .then(data => {
+                setDatabase(data)
+                setIsLoading(true)
+            })
     }, [])
 
     function remove(i, piece){
@@ -60,7 +63,7 @@ export default function MakeYours() {
             <h1 className='font '>Make your's</h1>
             <div id='custom-container'>
                 {custom.map((piece, i)=> (
-                    <img className='custom-pic' key={i} src={piece.img_url} onClick={() =>remove(i, piece)}/>
+                    <img className='custom-pic' key={i} src={piece.img_url} style={{width:(piece.length * 4)}}onClick={() =>remove(i, piece)}/>
                 ))}
                 <p>Your custom items length will be {length}mm.</p>
             </div>
@@ -92,6 +95,9 @@ export default function MakeYours() {
                     <p className='showitem-text'>{item.description}</p>
                 </div>}
             </div>
+            <section className='loading font' hidden={isLoading}>
+                <div>...Loading</div>
+            </section>
         </>
     )
 }
