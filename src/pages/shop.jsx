@@ -143,7 +143,7 @@ export default function Shop() {
                         shopItems.map((item) => (
                             <div className='card' key={item.id} onClick={() => setItem(item)}>
                                 <div className='img-container' onClick={() => setShowHidden(false)}>
-                                    <img className='img' src={item.img_url} alt={item.name} />
+                                    <img className='img' src={item.stock > 0 ? item.img_url : ""} alt={item.name} />
                                 </div>
                                 <p className='card-text'>{item.name}</p>
                                 <p className='card-text'>€{item.price * item.quantity}</p>
