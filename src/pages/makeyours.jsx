@@ -2,7 +2,6 @@ import {useState, useEffect} from 'react';
 
 export default function MakeYours() {
     const [custom, setCustom] = useState([]);
-    const [database, setDatabase] = useState([]);
     const [length, setLength] = useState(0);
     const [filtered, setFiltered] = useState([])
     const [showHidden, setShowHidden] = useState(true);
@@ -14,9 +13,8 @@ export default function MakeYours() {
         fetch(`${API}/products`)
             .then(res => res.json())
             .then(data => {
-                setDatabase(data)
-                setIsLoading(true)
-                setFiltered(database.filter(item => item.category === 'pieces'))
+                setFiltered(data.filter(item => item.category === 'pieces'));
+                setIsLoading(true);
             })
     }, [])
 
