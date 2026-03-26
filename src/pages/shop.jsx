@@ -49,6 +49,10 @@ export default function Shop() {
     }
 
     function addToCart(newItem){
+        if(newItem.stock === 0){
+            alert(`${newItem.name} is out of stock.`)
+            return;
+        }            
         if(wristSize === '0'){
             setIsAlertHidden(false);
             setAlert('Please set your wrist radius in millimeters.')
@@ -143,14 +147,14 @@ export default function Shop() {
                         shopItems.map((item) => (
                             <div className='card' key={item.id} onClick={() => setItem(item)}>
                                 <div className='img-container' onClick={() => setShowHidden(false)}>
-                                    <img className='img' src={item.stock > 0 ? item.img_url : ""} alt={item.name} />
+                                    <img className='img' src={item.img_url} alt={item.name} />
                                 </div>
                                 <p className='card-text'>{item.name}</p>
                                 <p className='card-text'>€{item.price * item.quantity}</p>
                                 <label className='card-input-label' >Wrist radius: 
                                     <input className='card-input' min='0' type='number' required  value={wristSize} onChange={(e) => setWristSize(e.target.value)}/>mm
                                 </label>    
-                                <button className='add-btn' onClick={() => { addToCart(item);  }}>Add to cart</button>
+                                <button className='add-btn' onClick={() => { addToCart(item); }}>{item.stock > 0 ? "Add to cart" : "Out of stock"}</button>
                             </div>
                         ))
                     }
