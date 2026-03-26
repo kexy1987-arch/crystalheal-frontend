@@ -19,7 +19,7 @@ function Checkout() {
     const total = prices.reduce((acc, num) => acc + num, 0).toFixed(2) * 100;
     const API = import.meta.env.VITE_API_URL;
     
-
+    console.log(cartItems)
     const handleSubmit = async (e) => {
         e.preventDefault();
 
