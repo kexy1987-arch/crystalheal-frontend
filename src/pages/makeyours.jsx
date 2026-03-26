@@ -23,6 +23,13 @@ export default function MakeYours() {
         updated.splice(i, 1)
         setCustom(updated);
         setLength(length - piece.length)
+        setFiltered(prev =>
+            prev.map(p =>
+                p.id === piece.id
+                    ? { ...p, stock: p.stock + 1 }
+                    : p
+            )
+        );
     }
 
     function addToCart(){
@@ -52,13 +59,6 @@ export default function MakeYours() {
     function addLength(piece){
         const updated = [...custom, piece];
         const customLength = updated.map(piece => piece.length);
-        setFiltered(prev =>
-            prev.map(p =>
-                p.id === piece.id
-                    ? { ...p, stock: p.stock - 1 }
-                    : p
-            )
-        );
         return customLength.reduce((acc, num) => acc + num, 0)
     }
 
