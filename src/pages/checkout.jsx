@@ -84,6 +84,12 @@ function Checkout() {
                     amount: total
                 })
             });
+            await fetch(`${API}/update-stock`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ items: cartItems })
+            });
+
             sessionStorage.removeItem('cart')
             window.location.href = "/success"
         } else {
