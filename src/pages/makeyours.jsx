@@ -4,7 +4,7 @@ export default function MakeYours() {
     const [custom, setCustom] = useState([]);
     const [database, setDatabase] = useState([]);
     const [length, setLength] = useState(0);
-    const [filtered, setFiltered] = useState(database.filter(item => item.category === 'pieces'))
+    const [filtered, setFiltered] = useState([])
     const [showHidden, setShowHidden] = useState(true);
     const [item, setItem] = useState('');
     const API = import.meta.env.VITE_API_URL;
@@ -16,6 +16,7 @@ export default function MakeYours() {
             .then(data => {
                 setDatabase(data)
                 setIsLoading(true)
+                setFiltered(database.filter(item => item.category === 'pieces'))
             })
     }, [])
 
