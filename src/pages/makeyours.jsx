@@ -4,7 +4,7 @@ export default function MakeYours() {
     const [custom, setCustom] = useState([]);
     const [database, setDatabase] = useState([]);
     const [length, setLength] = useState(0);
-    const filtered = database.filter(item => item.category === 'pieces')
+    const [filtered, setFiltered] = useState[database.filter(item => item.category === 'pieces')]
     const [showHidden, setShowHidden] = useState(true);
     const [item, setItem] = useState('');
     const API = import.meta.env.VITE_API_URL;
@@ -58,6 +58,18 @@ export default function MakeYours() {
         return customLength.reduce((acc, num) => acc + num, 0)
     }
 
+    function handleSelectPiece(piece){
+        setCustom([...custom, piece]);
+        setLength(addLength(piece));
+        setFiltered(prev => 
+            prev.map(p =>
+                p.id === piece.id
+                ? {...p, stock: p.stock -1}
+                : p
+            )
+        );
+    }
+
     return (
         <>  
             <h1 className='font '>Make your's</h1>
@@ -78,9 +90,10 @@ export default function MakeYours() {
                 {filtered 
                 ? filtered.map((piece) => (
                     <div key={piece.id} className='piece-card' >
-                        <div onClick={() => (setCustom([...custom, piece]), setLength(addLength(piece)))}>    
+                        <div onClick={() => handleSelectPiece(piece)}>    
                             <img className='piece-img' src={piece.img_url} />
                             <p>{piece.name}</p>
+                            <p>{piece.stock} available.</p>
                         </div>
                         <button className='small' onClick={() => (setItem(piece), setShowHidden(false))}>Description</button>
                     </div>
