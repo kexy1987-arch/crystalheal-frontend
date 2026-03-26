@@ -58,6 +58,7 @@ export default function MakeYours() {
     }
 
     function handleSelectPiece(piece){
+        if(piece.stock === 0) return;
         setCustom([...custom, piece]);
         setLength(addLength(piece));
         setFiltered(prev => 
