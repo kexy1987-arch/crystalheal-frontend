@@ -161,8 +161,9 @@ export default function Shop() {
                     <p className='font'>{alert}</p>
                 </div>
             </section>
-            <section className='loading font' hidden={isLoading}>
-                <div>...Loading</div>
+            <section className='loading' hidden={isLoading}>
+                <div className='font'>...Loading</div>
+                <div>Can be 50 seconds or more.</div>
             </section>
         </section>
     )

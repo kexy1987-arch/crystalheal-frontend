@@ -95,8 +95,9 @@ export default function MakeYours() {
                     <p className='showitem-text'>{item.description}</p>
                 </div>}
             </div>
-            <section className='loading font' hidden={isLoading}>
-                <div>...Loading</div>
+            <section className='loading' hidden={isLoading}>
+                <div className='font'>...Loading</div>
+                <div>Can be 50 seconds or more.</div>
             </section>
         </>
     )
