@@ -50,10 +50,15 @@ export default function MakeYours() {
         setCustom([])
     }
     function addLength(piece){
-        const updated = [...custom, piece]
-        console.log(custom)
+        const updated = [...custom, piece];
         const customLength = updated.map(piece => piece.length);
-        console.log(custom.length)
+        setFiltered(prev =>
+            prev.map(p =>
+                p.id === piece.id
+                    ? { ...p, stock: p.stock - 1 }
+                    : p
+            )
+        );
         return customLength.reduce((acc, num) => acc + num, 0)
     }
 
