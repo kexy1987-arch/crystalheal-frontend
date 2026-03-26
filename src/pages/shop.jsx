@@ -50,7 +50,6 @@ export default function Shop() {
 
     function addToCart(newItem){
         if(newItem.stock === 0){
-            alert(`${newItem.name} is out of stock.`)
             return;
         }            
         if(wristSize === '0'){
