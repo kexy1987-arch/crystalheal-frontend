@@ -28,12 +28,17 @@ export default function Cart({cart, setCart, database, setDatabase}){
     function addQuantity(item){
         const dbItem = database.find(p => p.id === item.id);
         if (!dbItem || dbItem.stock <= 0) return;
-        console.log(item)
         const newItem = item;
         const store = JSON.parse(sessionStorage.getItem('cart')) || [];
         const updated = [...store];
         const existing = updated.find(item => newItem.key === item.key);
-        console.log(store)
+        setDatabase(prev =>
+            prev.map(p =>
+                p.id === item.id
+                    ? { ...p, stock: p.stock - 1 }
+                    : p
+            )
+        );
 
         if (existing) {
             const basePrice = existing.price / existing.quantity;
@@ -51,13 +56,18 @@ export default function Cart({cart, setCart, database, setDatabase}){
             remove(index, item)
             return;
         }
+        setDatabase(prev =>
+            prev.map(p =>
+                p.id === item.id
+                    ? { ...p, stock: p.stock + 1 }
+                    : p
+            )
+        );
 
         const newItem = item;
         const store = JSON.parse(sessionStorage.getItem('cart')) || [];
         const updated = [...store];
         const existing = updated.find(item => newItem.key === item.key);
-        console.log(store)
-
         if (existing) {
             const basePrice = existing.price / existing.quantity 
             existing.quantity -= 1;
