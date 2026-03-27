@@ -63,6 +63,13 @@ export default function Shop() {
             }, 4000)
             return;
         }
+        setDatabase(prev =>
+            prev.map(p =>
+                p.id === newItem.id
+                    ? { ...p, stock: p.stock - 1 }
+                    : p
+            )
+        );
         const store = JSON.parse(sessionStorage.getItem('cart')) || [];
         const updated = [...store];
         const existing = updated.find(item => newItem.id === item.id);
@@ -81,13 +88,7 @@ export default function Shop() {
             
             return newCart;
         });
-        setDatabase(prev =>
-            prev.map(p =>
-                p.id === newItem.id
-                    ? { ...p, stock: p.stock - 1 }
-                    : p
-            )
-        );
+        
         
     }
 
