@@ -1,4 +1,5 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {useState} from 'react'
 
 import Home from './pages/home.jsx'
 import Shop from './pages/shop.jsx'
@@ -11,6 +12,9 @@ import Checkout from './pages/checkout.jsx'
 import Success from './pages/success.jsx'
 
 function App() {
+
+  const [wristSize, setWristSize] = useState('0');
+
   return(
     <div className='page'>
       <BrowserRouter>
@@ -19,10 +23,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/about" element={<About/>}/>
-            <Route path="/shop" element={<Shop/>}/>
+            <Route path="/shop" element={<Shop wristSize={wristSize} setWristSize={setWristSize}/>}/>
             <Route path="makeyours" element={<MakeYours />} />
             <Route path="/contact" element={<Contact/>}/>
-            <Route path="checkout" element={<Checkout/>}/>
+            <Route path="checkout" element={<Checkout wristSize={wristSize}/>}/>
             <Route path="success" element={<Success/>}/>
           </Routes>
         </main>

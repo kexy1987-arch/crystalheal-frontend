@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const stripePromise = loadStripe("pk_test_51T9hlzJ8fuYdHTKZT00SyR4iFu8jwBLkg0Oy93UYHBtaAzdHYotjh6h7JfafKbJTlEYVlWwC3DjlRcn7XrsjGStQ00mYCnhmOB");
 
-function Checkout() {
+function Checkout({wristSize}) {
     const stripe = useStripe();
     const elements = useElements();
     const [name, setName] = useState('');
@@ -81,7 +81,8 @@ function Checkout() {
                         }
                     },
                     items: cartItems,
-                    amount: total
+                    amount: total,
+                    wrist: wristSize
                 })
             });
             await fetch(`${API}/update-stock`, {

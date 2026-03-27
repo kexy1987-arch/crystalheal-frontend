@@ -3,7 +3,7 @@ import {useState, useRef, useEffect} from 'react'
 import Cart from './cart.jsx'
 import MakeYours from './makeyours.jsx'
 
-export default function Shop() {
+export default function Shop({wristSize, setWristSize}) {
     const [database, setDatabase] = useState([])
     const [category, setCategory] = useState('');
     const [isHidden, setIsHidden] = useState(true);
@@ -13,7 +13,6 @@ export default function Shop() {
     const cartRef = useRef(null);
     const [makeYoursHidden, setMakeYoursHidden] = useState(true);
     const [item, setItem] = useState('')
-    const [wristSize, setWristSize] = useState('0');
     const [showHidden, setShowHidden] = useState(true);
     const [alert, setAlert] = useState('')
     const [isAlertHidden, setIsAlertHidden] = useState(true);
@@ -144,7 +143,7 @@ export default function Shop() {
                 </ul>
             </nav>
             <div ref={cartRef} hidden={isCartHidden} id='cart-container'>                
-                <Cart cart={cart} setCart={setCart} database={database} setDatabase={setDatabase}/>
+                <Cart cart={cart} setCart={setCart} database={database} setDatabase={setDatabase} wristSize={wristSize}/>
             </div>
             <section>
                 <h1 className='font'>This is the webshop area</h1>

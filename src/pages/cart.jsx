@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 
-export default function Cart({cart, setCart, database, setDatabase}){
+export default function Cart({cart, setCart, database, setDatabase, wristSize}){
     const [balance, setBalance] = useState(0);
     function remove(index, item){
         console.log(item)
@@ -88,6 +88,7 @@ export default function Cart({cart, setCart, database, setDatabase}){
             {cart && cart.length > 0 && (
         <>            
             <p id='balance'>Total: €{balance}<button className='add-btn'><Link to='/checkout'>Checkout</Link></button></p>
+            <p>Your wrist size: {wristSize}mm</p>
             <ul>
                 {cart.map((item, index) => (
                     <li key={`${item.name}-${index}`} className='cart-items'>
