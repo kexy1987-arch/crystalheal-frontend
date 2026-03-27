@@ -521,4 +521,5 @@ nav {
 .showitem-name{
     display:flex;
     justify-content: space-between;
+    border: 1px solid black;
 }
