@@ -84,7 +84,7 @@ export default function Shop() {
         setDatabase(prev =>
             prev.map(p =>
                 p.id === newItem.id
-                    ? { ...p, stock: p.stock + 1 }
+                    ? { ...p, stock: p.stock - 1 }
                     : p
             )
         );
