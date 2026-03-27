@@ -81,6 +81,13 @@ export default function Shop() {
             
             return newCart;
         });
+        setDatabase(prev =>
+            prev.map(p =>
+                p.id === newItem.id
+                    ? { ...p, stock: p.stock + 1 }
+                    : p
+            )
+        );
         
     }
 
@@ -148,7 +155,7 @@ export default function Shop() {
                                 <div className='img-container' onClick={() => setShowHidden(false)}>
                                     <img className='img' src={item.img_url} alt={item.name} />
                                 </div>
-                                <p className='card-text'>{item.name}</p>
+                                <p className='card-text'>{item.name} ${shopItems.stock} left</p>
                                 <p className='card-text'>€{item.price * item.quantity}</p>
                                 <label className='card-input-label' >Wrist radius: 
                                     <input className='card-input' min='0' type='number' required  value={wristSize} onChange={(e) => setWristSize(e.target.value)}/>mm
