@@ -107,7 +107,7 @@ export default function MakeYours() {
             </div>
             <div id='showitem' hidden={showHidden}>
                 {<div className='showitem-container'>
-                    <p>{item.name}<button onClick={() => setShowHidden(true)} className='close-show-btn add-btn'>X</button></p>
+                    <p className='showitem-name'><div></div>{item.name}<button onClick={() => setShowHidden(true)} className='close-show-btn add-btn'>X</button></p>
                     <img className='showpieceimg' src={item.img_url} />
                     <p className='showitem-text'>Price:€{item.price}</p>
                     <p className='showitem-text'>{item.description}</p>

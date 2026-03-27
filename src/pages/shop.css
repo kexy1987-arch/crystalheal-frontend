@@ -518,6 +518,7 @@ nav {
     box-shadow: 0px 0px 80px rgb(94, 1, 97);
 }
 
-.close-show-btn{
-    margin-left: 150px;
+.showitem-name{
+    display:flex;
+    justify-content: space-between;
 }
