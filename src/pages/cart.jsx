@@ -52,10 +52,6 @@ export default function Cart({cart, setCart, database, setDatabase}){
 
     function removeQuantity(item, index) {
         console.log(item)
-        if(item.quantity === 1) {
-            remove(index, item)
-            return;
-        }
         setDatabase(prev =>
             prev.map(p =>
                 p.id === item.id
@@ -63,6 +59,11 @@ export default function Cart({cart, setCart, database, setDatabase}){
                     : p
             )
         );
+        if(item.quantity === 1) {
+            remove(index, item)
+            return;
+        }
+        
 
         const newItem = item;
         const store = JSON.parse(sessionStorage.getItem('cart')) || [];
