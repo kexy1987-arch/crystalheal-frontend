@@ -144,7 +144,7 @@ export default function Shop() {
                 </ul>
             </nav>
             <div ref={cartRef} hidden={isCartHidden} id='cart-container'>                
-                <Cart cart={cart} setCart={setCart} />
+                <Cart cart={cart} setCart={setCart} database={database} setDatabase={setDatabase}/>
             </div>
             <section>
                 <h1 className='font'>This is the webshop area</h1>

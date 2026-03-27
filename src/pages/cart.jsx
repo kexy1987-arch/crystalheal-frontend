@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 
-export default function Cart({cart, setCart}){
+export default function Cart({cart, setCart, database, setDatabase}){
     const [balance, setBalance] = useState(0);
     function remove(index, item){
         console.log(item)
@@ -26,6 +26,8 @@ export default function Cart({cart, setCart}){
     )
 
     function addQuantity(item){
+        const dbItem = database.find(p => p.id === item.id);
+        if (!dbItem || dbItem.stock <= 0) return;
         console.log(item)
         const newItem = item;
         const store = JSON.parse(sessionStorage.getItem('cart')) || [];
