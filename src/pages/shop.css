@@ -444,7 +444,7 @@ nav {
 
 .showpieceimg {
     height: 30%;
-    max-height: 300px;
+    max-width: 300px;
     margin: 10px auto;
     border-radius: 50%;
 }
