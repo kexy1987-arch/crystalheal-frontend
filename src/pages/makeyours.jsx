@@ -82,8 +82,8 @@ export default function MakeYours() {
                 {custom.map((piece, i)=> (
                     <img className='custom-pic' key={i} src={piece.img_url} style={{width:(piece.length * 4), height:(piece.height * 4)}} onClick={() =>remove(i, piece)}/>
                 ))}
-                <p>Your custom items length will be {length}mm.</p>
             </div>
+            <p>Your custom items length will be {length}mm.</p>
             <div id='msg-btn'>
             {custom.length !== 0 
             ?   <div>
