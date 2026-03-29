@@ -276,6 +276,8 @@ nav {
     align-items: center;
     white-space: nowrap;
     overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 
     
 }
