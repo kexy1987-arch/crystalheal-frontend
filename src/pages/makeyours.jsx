@@ -89,7 +89,7 @@ export default function MakeYours() {
             ?   <div>
                     <button onClick={addToCart} className='add-btn' >Add to cart</button>
                 </div>
-                    : <p className='font'>Your custom item will be here</p> }
+                    : <p className='font'>Your custom item will be above</p> }
             </div>
             <div id='piece-container'>
                 {filtered 
