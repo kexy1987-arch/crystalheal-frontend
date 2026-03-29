@@ -454,7 +454,6 @@ nav {
     height: 30%;
     max-width: 300px;
     margin: 10px auto;
-    border-radius: 50%;
 }
 
 #alert{
@@ -529,5 +528,4 @@ nav {
 .showitem-name{
     display:flex;
     justify-content: space-between;
-    border: 1px solid black;
 }
