@@ -80,7 +80,7 @@ export default function MakeYours() {
             <h1 className='font '>Make your's</h1>
             <div id='custom-container'>
                 {custom.map((piece, i)=> (
-                    <img className='custom-pic' key={i} src={piece.img_url} style={{width:(piece.length * 4)}}onClick={() =>remove(i, piece)}/>
+                    <img className='custom-pic' key={i} src={piece.img_url} style={{width:(piece.length * 4), height:(piece.height * 4)}} onClick={() =>remove(i, piece)}/>
                 ))}
                 <p>Your custom items length will be {length}mm.</p>
             </div>
