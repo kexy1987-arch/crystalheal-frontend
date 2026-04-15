@@ -55,8 +55,9 @@ a{
 }
 .fonts{
     font-family: "Bonheur Royale", cursive;
-        font-weight: 400;
-        font-style: normal;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
 }
 
 nav {
