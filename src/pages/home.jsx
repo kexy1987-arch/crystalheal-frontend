@@ -9,8 +9,6 @@ export default function Home() {
                 <h2>Under construction</h2>
                 <p className='text'>On this site you can find crystal necklaces and wristbands.</p>
                 <p className='text'>Find the Crystal That Speaks to Your Soul. Bring balance, clarity, and positive energy into your life with natural healing crystals and gemstone jewelry. Every stone is hand‑selected for beauty, authenticity, and high vibrational energy.</p>
-                <h2></h2>
-                <p className='text'></p>
                 <h2>💎 Our Mission</h2>
                 <p className='text'>At Crystal Heal, we believe crystals are more than beautiful stones — they are tools for transformation.
                     Our mission is to help you reconnect with your intuition, protect your energy, and bring harmony into your everyday life.</p>
