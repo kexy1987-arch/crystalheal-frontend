@@ -6,13 +6,13 @@ export default function Home() {
         <section id="home">
             <h1 id='homeh1'>Welcome on Crystal Heal</h1>
             <section>
-                <h2>Under construction</h2>
-                <p className='text'>On this site you can find crystal necklaces and wristbands.</p>
+                <h2 className='font'>Under construction</h2>
+                <p className='text'>On this site you can find crystal necklaces and bracelets.</p>
                 <p className='text'>Find the Crystal That Speaks to Your Soul. Bring balance, clarity, and positive energy into your life with natural healing crystals and gemstone jewelry. Every stone is hand‑selected for beauty, authenticity, and high vibrational energy.</p>
-                <h2>💎 Our Mission</h2>
+                <h2 className='font'>💎 Our Mission</h2>
                 <p className='text'>At Crystal Heal, we believe crystals are more than beautiful stones — they are tools for transformation.
                     Our mission is to help you reconnect with your intuition, protect your energy, and bring harmony into your everyday life.</p>
-                <h2>🔮 Shop by Intention</h2>
+                <h2 className='font'>🔮 Shop by Intention</h2>
                 <p className='text'>Let your energy guide you. Explore crystals chosen for:
                     <ul>
                         <li>Protection & Grounding - Tiger Eye, Black Obsidian, Hematite</li>
@@ -22,7 +22,7 @@ export default function Home() {
                     </ul>
                     Each stone carries a unique vibration to support your journey.</p>
                 <p className='text'>You can make your own or you can find some ready jewelleries in the webshop.</p>
-                <h2>🌙 Why Choose Crystal Heal</h2>
+                <h2 className='font'>🌙 Why Choose Crystal Heal</h2>
                 <p className='text'>
                     <ul>
                         <li>100% natural, authentic crystals</li>

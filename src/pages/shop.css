@@ -13,7 +13,13 @@
 .content{
     flex:1;
 }
-
+.texts{
+    background-color: rgba(99, 0, 102, 0.5);
+    color: whitesmoke;
+    padding: 0.8rem;
+    border-radius: 1rem;
+    margin: 1rem;
+}
 .center{
     text-align: center;
 }
@@ -46,6 +52,11 @@ a{
         font-weight: 400;
         font-style: normal;
         font-size: 50px;
+}
+.fonts{
+    font-family: "Bonheur Royale", cursive;
+        font-weight: 400;
+        font-style: normal;
 }
 
 nav {
