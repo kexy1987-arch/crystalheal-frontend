@@ -59,6 +59,10 @@ nav {
     background-color: purple;
 }
 
+li{
+    margin-left: 2rem
+}
+
 .card{
     display: flex;
     flex-direction: column;
