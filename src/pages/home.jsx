@@ -10,7 +10,7 @@ export default function Home() {
                 <p className='text'>On this site you can find crystal necklaces and bracelets.</p>
                 <p className='text'>Find the Crystal That Speaks to Your Soul. Bring balance, clarity, and positive energy into your life with natural healing crystals and gemstone jewelry. Every stone is hand‑selected for beauty, authenticity, and high vibrational energy.</p>
                 <h2 className='font'>💎 Our Mission</h2>
-                <p className='text'>At Crystal Heal, we believe crystals are more than beautiful stones — they are tools for transformation.
+                <p className='text'>At Crystal Heal, I believe crystals are more than beautiful stones — they are tools for transformation.
                     Our mission is to help you reconnect with your intuition, protect your energy, and bring harmony into your everyday life.</p>
                 <h2 className='font'>🔮 Shop by Intention</h2>
                 <p className='text'>Let your energy guide you. Explore crystals chosen for:
@@ -28,7 +28,7 @@ export default function Home() {
                         <li>100% natural, authentic crystals</li>
                         <li>Carefully packaged with intention</li>
                         <li>Trusted by crystal lovers across the world</li>
-                        We're here to help you find the crystal that resonates with your energy.
+                        I am here to help you find the crystal that resonates with your energy.
                     </ul>
                 </p>
             </section>
