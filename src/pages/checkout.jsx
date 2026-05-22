@@ -22,15 +22,20 @@ function Checkout({wristSize}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("amount: ", total)
-        console.log("items: ", cartItems)
-        console.log("name:", name)
-        console.log("email: ", email)
-        console.log("addLine1: ", addressLine1)
-        console.log("count: ", county)
-        console.log("city: ", addressCity)
-        console.log("postal_code: ", addressPostalCode)
-        
+        const payload = {amount: total,
+            items: cartItems,
+                customer: {
+            name: name,
+                email: email,
+                    address: {
+                line1: addressLine1,
+                    line2: county,
+                        city: addressCity,
+                            postal_code: addressPostalCode,
+                                country: "IE",
+                    }
+        }}
+        console.log(payload);
 
         const res = await fetch(`${ API }/create-payment-intent`, {
             method: "POST",
