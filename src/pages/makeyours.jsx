@@ -8,6 +8,7 @@ export default function MakeYours() {
     const [item, setItem] = useState('');
     const API = import.meta.env.VITE_API_URL;
     const [isLoading, setIsLoading] = useState(false);
+    const radius = length/ (2 * Math.PI);
 
     useEffect(() => {
         fetch(`${API}/products`)
@@ -74,15 +75,53 @@ export default function MakeYours() {
             )
         );
     }
+    const circumference = 2 * Math.PI * radius;
+    function show(){
+        let angle = 0;
+        
 
-    return (
+        const positioned = custom.map((item, i) => {
+            let posX = 100;
+            let posY = 100 - radius;
+
+            const next = custom[(i + 1) % custom.length];
+            const currentAngle = angle;
+            angle += ((item.length + next.length)/ 2)/ circumference * 360;
+            console.log("length: ", item.length)
+            console.log("height: ", item.height)
+            return { item, posX, posY, angle: currentAngle, i };
+        })
+        console.log(positioned)
+        return(
+            <>
+                {positioned.map(({ item, posX, posY, angle, i }) => (
+                    <g key={i} transform={`rotate(${angle} 100 100)`}>
+                        <image    
+                            className='custom-pic'                        
+                            width={item.length}
+                            height={item.height}
+                            x={posX - (item.length / 2)}
+                            y={posY - (item.height / 2)}
+                            href={item.img_url}
+                            preserveAspectRatio="none"
+                            className='custom-pic'
+                            onClick={() => {remove(i, item)}}
+                        />
+                    </g>
+                ))}
+            </>
+        )
+    }
+
+        return (
         <>  
             <h1 className='font '>Make your's</h1>
-            <div id='custom-container'>
-                {custom.map((piece, i)=> (
-                    <img className='custom-pic' key={i} src={piece.img_url} style={{width:(piece.length * 4), height:(piece.height * 4)}} onClick={() =>remove(i, piece)}/>
-                ))}
-            </div>
+
+
+            <svg id='custom-container' width="200" height="200" viewBox="60 60 80 80">
+                  {show()}
+            </svg>
+
             <p className='center'>Your custom items length will be {length}mm.</p>
             <div id='msg-btn'>
             {custom.length !== 0 
@@ -120,3 +159,25 @@ export default function MakeYours() {
         </>
     )
 }
+
+/*
+{custom.map((piece, i) => {
+                    const angle = (2 * Math.PI * i) / custom.length;
+                    const x = (radius + (piece.height)) * Math.cos(angle);
+                    const y = (radius + (piece.height)) * Math.sin(angle);
+                    return(
+                        <img className='custom-pic' 
+                            key={i} 
+                            src={piece.img_url} 
+                            style={{
+                                borderRadius: "50%",
+                                left: x + radius - piece.length * 4,
+                                top: y + radius - piece.height * 4,
+                                position: "absolute", 
+                                width: (piece.length * 4), 
+                                height: (piece.height * 4),
+                                rotate: `${angle * (180 / Math.PI) + 90}deg`,
+                            }} 
+                            onClick={() => remove(i, piece)} />
+                )})}
+*/

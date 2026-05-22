@@ -282,30 +282,29 @@ li{
 }
 
 #custom-container{
+    border-radius: 50%;
+    position: relative;
     margin: auto;
-    height: 2rem;
-    width: 80%;
+    height: 200px;
+    width: 200px;
     max-width: 900px;
     margin-bottom: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    white-space: nowrap;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-
-    
+    flex-wrap: wrap;
 }
 
 .custom-pic{
-    transform: scale(1);
-    transition: transform 0.25s ease;
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: scale 0.2s ease;
 }
 
-.custom-pic:hover {
-    transform: scale(1.5);
+.custom-pic:hover{
+    scale: 1.5
 }
+
 
 #piece-container{
     display: flex;
