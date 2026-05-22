@@ -18,11 +18,18 @@ function Checkout({wristSize}) {
     const prices = cartItems.map(item => item.price);
     const total = Math.round(prices.reduce((acc, num) => acc + num, 0) * 100);
     const API = import.meta.env.VITE_API_URL;
-    
-    console.log(cartItems)
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        console.log("amount: ", total)
+        console.log("items: ", cartItems)
+        console.log("name:", name)
+        console.log("email: ", email)
+        console.log("addLine1: ", addressLine1)
+        console.log("count: ", county)
+        console.log("city: ", addressCity)
+        console.log("postal_code: ", addressPostalCode)
         
 
         const res = await fetch(`${ API }/create-payment-intent`, {
