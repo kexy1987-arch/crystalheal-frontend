@@ -16,7 +16,7 @@ function Checkout({wristSize}) {
     const [email, setEmail] = useState('');
     const cartItems = JSON.parse(sessionStorage.getItem('cart'));
     const prices = cartItems.map(item => item.price);
-    const total = prices.reduce((acc, num) => acc + num, 0).toFixed(2) * 100;
+    const total = Math.round(prices.reduce((acc, num) => acc + num, 0) * 100);
     const API = import.meta.env.VITE_API_URL;
     
     console.log(cartItems)
