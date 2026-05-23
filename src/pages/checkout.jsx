@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const stripePromise = loadStripe("pk_test_51T9hlzJ8fuYdHTKZT00SyR4iFu8jwBLkg0Oy93UYHBtaAzdHYotjh6h7JfafKbJTlEYVlWwC3DjlRcn7XrsjGStQ00mYCnhmOB");
 
-function Checkout({wristSize}) {
+function Checkout({wristSize, cart, setCart}) {
     const stripe = useStripe();
     const elements = useElements();
     const [name, setName] = useState('');
@@ -14,7 +14,7 @@ function Checkout({wristSize}) {
     const [addressPostalCode, setAddressPostalCode] = useState('');
     const [county, setCounty] = useState('');
     const [email, setEmail] = useState('');
-    const cartItems = JSON.parse(sessionStorage.getItem('cart'));
+    const cartItems = cart;
     const prices = cartItems.map(item => item.price);
     const total = Math.round(prices.reduce((acc, num) => acc + num, 0) * 100);
     const API = import.meta.env.VITE_API_URL;
@@ -89,7 +89,7 @@ function Checkout({wristSize}) {
                 body: JSON.stringify({ items: cartItems })
             });
 
-            sessionStorage.removeItem('cart')
+            setCart([])
             window.location.href = "/success"
         } else {
             alert('Please check your balance or try another card.')

@@ -27,7 +27,7 @@ function App() {
             <Route path="/shop" element={<Shop wristSize={wristSize} setWristSize={setWristSize} cart={cart} setCart={setCart}/>}/>
             <Route path="makeyours" element={<MakeYours cart={cart} setCart={setCart}/>} />
             <Route path="/contact" element={<Contact/>}/>
-            <Route path="checkout" element={<Checkout wristSize={wristSize}/>}/>
+            <Route path="checkout" element={<Checkout wristSize={wristSize} cart={cart} setCart={setCart} />}/>
             <Route path="success" element={<Success/>}/>
           </Routes>
         </main>
