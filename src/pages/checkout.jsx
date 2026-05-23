@@ -35,7 +35,6 @@ function Checkout({wristSize}) {
                                 country: "IE",
                     }
         }}
-        console.log(payload);
 
         const res = await fetch(`${ API }/create-payment-intent`, {
             method: "POST",
