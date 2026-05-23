@@ -114,12 +114,14 @@ export default function MakeYours({cart, setCart}) {
         return (
         <>  
             <h1 className='font '>Make your's</h1>
-
-
             <svg id='custom-container' width="250" height="250" viewBox="50 50 100 100">
                   {show()}
             </svg>
-
+            <div id="custom-line">
+                {custom.map((item, i) =>(
+                    <img className="custom-line-img "width={item.length * 4} src={item.img_url} alt="item.name" onClick={() => {remove(i, item)}}/>
+                ))}
+            </div>
             <p className='center'>Your custom items length around {Math.round(length)}mm.</p>
             <div id='msg-btn'>
             {custom.length !== 0 
