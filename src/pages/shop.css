@@ -406,6 +406,7 @@ li{
     top: 0px;
     left: 0px;
     background-color: rgba(253, 116, 253, 0.952);
+    padding: 20px;
     width: 100vw;
     height: 100vh;
 }
@@ -484,7 +485,7 @@ li{
 
 
 .fade-out {
-    animation: fadeOut 1s ease forwards;
+    animation: fadeOut 3s ease forwards;
 }
 
 @keyframes fadeOut {
@@ -543,4 +544,17 @@ li{
 .showitem-name{
     display:flex;
     justify-content: space-between;
+}
+
+.message{
+    border: 2px solid red;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    padding: 5px;
+    background-color: rgba(255, 0, 0, 0.651);
+    font-size: 1.3rem;
+    width: 100%;
+    animation: fadeOut 5s ease forwards;
 }

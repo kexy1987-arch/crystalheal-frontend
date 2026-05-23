@@ -22,20 +22,7 @@ function Checkout({wristSize}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const payload = {amount: total,
-            items: cartItems,
-                customer: {
-            name: name,
-                email: email,
-                    address: {
-                line1: addressLine1,
-                    line2: county,
-                        city: addressCity,
-                            postal_code: addressPostalCode,
-                                country: "IE",
-                    }
-        }}
-
+        
         const res = await fetch(`${ API }/create-payment-intent`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },

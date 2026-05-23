@@ -3,12 +3,12 @@ import {useState, useRef, useEffect} from 'react'
 import Cart from './cart.jsx'
 import MakeYours from './makeyours.jsx'
 
-export default function Shop({wristSize, setWristSize}) {
+export default function Shop({wristSize, setWristSize, cart, setCart}) {
     const [database, setDatabase] = useState([])
     const [category, setCategory] = useState('');
     const [isHidden, setIsHidden] = useState(true);
     const [isCartHidden, setIsCartHidden] = useState(true);
-    const [cart, setCart] = useState(JSON.parse(sessionStorage.getItem('cart')) || []);
+    //const [cart, setCart] = useState(JSON.parse(sessionStorage.getItem('cart')) || []);
     const categoryRef = useRef(null);
     const cartRef = useRef(null);
     const [makeYoursHidden, setMakeYoursHidden] = useState(true);
@@ -18,6 +18,7 @@ export default function Shop({wristSize, setWristSize}) {
     const [isAlertHidden, setIsAlertHidden] = useState(true);
     const API = import.meta.env.VITE_API_URL;
     const [isLoading, setIsLoading] = useState(false);
+    const [newMessage, setNewMessage] = useState([]);
 
     
     useEffect(() => {
@@ -56,10 +57,10 @@ export default function Shop({wristSize, setWristSize}) {
             setAlert('Please set your wrist radius in millimeters.')
             setTimeout(() => {
                 document.getElementById('alert').classList.add('fade-out');
-            }, 3000);
+            }, 100);
             setTimeout(() => {
                 setIsAlertHidden(true);
-            }, 4000)
+            }, 2000)
             return;
         }
         setDatabase(prev =>
@@ -69,26 +70,28 @@ export default function Shop({wristSize, setWristSize}) {
                     : p
             )
         );
-        const store = JSON.parse(sessionStorage.getItem('cart')) || [];
-        const updated = [...store];
+
+        message(newItem);
+        
+        //const store = JSON.parse(sessionStorage.getItem('cart')) || [];
+        const updated = [...cart]//[...store];
         const existing = updated.find(item => newItem.id === item.id);
         
         if(existing){
             existing.quantity += 1;
             setCart(updated);
-            sessionStorage.setItem('cart', JSON.stringify(updated));
+            //sessionStorage.setItem('cart', JSON.stringify(updated));
             return;
         }
 
         setCart(prev => {
             newItem.length = wristSize;
             const newCart = [...prev, newItem];
-            sessionStorage.setItem('cart', JSON.stringify(newCart));
+            //sessionStorage.setItem('cart', JSON.stringify(newCart));
             
             return newCart;
         });
-        
-        
+       
     }
 
     useEffect(() => {
@@ -108,13 +111,18 @@ export default function Shop({wristSize, setWristSize}) {
     
     function close(){
         setMakeYoursHidden(true)
-        setCart(JSON.parse(sessionStorage.getItem('cart')))
+        //setCart(JSON.parse(sessionStorage.getItem('cart')))
     }
 
+    function message(item){
+        setNewMessage([newMessage, <p className="message">{item.name}</p>])
+    }
 
+  
 
     return (
         <section id="shop">
+            {newMessage}
             <div id='showitem' hidden={showHidden}>
                 {<div className='showitem-container'>
                     <p>{item.name}<button onClick={() => setShowHidden(true)} className='add-btn'>X</button></p>
@@ -129,7 +137,7 @@ export default function Shop({wristSize, setWristSize}) {
                 </div>}
             </div>
             <div id="makeyours" hidden={makeYoursHidden}>
-            <MakeYours/>
+            <MakeYours cart={cart} setCart={setCart}/>
                 <button className='add-btn close-btn'onClick={close}>X</button>
             </div>
             <div id='btn-container'>
@@ -173,7 +181,6 @@ export default function Shop({wristSize, setWristSize}) {
             </section>
             <section className='loading' hidden={isLoading}>
                 <div className='font'>...Loading</div>
-                <div>Can be 50 seconds or more.</div>
             </section>
         </section>
     )

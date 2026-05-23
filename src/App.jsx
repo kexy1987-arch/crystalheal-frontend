@@ -14,6 +14,7 @@ import Success from './pages/success.jsx'
 function App() {
 
   const [wristSize, setWristSize] = useState('0');
+  const [cart, setCart] = useState([]);
 
   return(
     <div className='page'>
@@ -23,8 +24,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/about" element={<About/>}/>
-            <Route path="/shop" element={<Shop wristSize={wristSize} setWristSize={setWristSize}/>}/>
-            <Route path="makeyours" element={<MakeYours />} />
+            <Route path="/shop" element={<Shop wristSize={wristSize} setWristSize={setWristSize} cart={cart} setCart={setCart}/>}/>
+            <Route path="makeyours" element={<MakeYours cart={cart} setCart={setCart}/>} />
             <Route path="/contact" element={<Contact/>}/>
             <Route path="checkout" element={<Checkout wristSize={wristSize}/>}/>
             <Route path="success" element={<Success/>}/>

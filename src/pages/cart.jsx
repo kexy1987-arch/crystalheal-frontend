@@ -3,12 +3,20 @@ import {Link} from 'react-router-dom'
 
 export default function Cart({cart, setCart, database, setDatabase, wristSize}){
     const [balance, setBalance] = useState(0);
+
+
     function remove(index, item){
-        console.log(item)
         setBalance(balance - item.price);
         const newArray = cart.filter((_, i) => i !== index);
         setCart(newArray);
-        sessionStorage.setItem('cart', JSON.stringify(newArray));
+        //sessionStorage.setItem('cart', JSON.stringify(newArray));
+        setDatabase(prev =>
+            prev.map(p =>
+                p.id === item.id
+                    ? { ...p, stock: p.stock + item.quantity }
+                    : p
+            )
+        );
     }
 
     useEffect(() =>{
@@ -29,7 +37,7 @@ export default function Cart({cart, setCart, database, setDatabase, wristSize}){
         const dbItem = database.find(p => p.id === item.id);
         if (!dbItem || dbItem.stock <= 0) return;
         const newItem = item;
-        const store = JSON.parse(sessionStorage.getItem('cart')) || [];
+        const store = cart || [];
         const updated = [...store];
         const existing = updated.find(item => newItem.key === item.key);
         setDatabase(prev =>
@@ -45,7 +53,7 @@ export default function Cart({cart, setCart, database, setDatabase, wristSize}){
             existing.quantity += 1;
             existing.price += basePrice;
             setCart(updated);
-            sessionStorage.setItem('cart', JSON.stringify(updated));
+            //sessionStorage.setItem('cart', JSON.stringify(updated));
             return;
         }
     }
@@ -66,7 +74,7 @@ export default function Cart({cart, setCart, database, setDatabase, wristSize}){
         
 
         const newItem = item;
-        const store = JSON.parse(sessionStorage.getItem('cart')) || [];
+        const store = cart || [];
         const updated = [...store];
         const existing = updated.find(item => newItem.key === item.key);
         if (existing) {
@@ -74,7 +82,7 @@ export default function Cart({cart, setCart, database, setDatabase, wristSize}){
             existing.quantity -= 1;
             existing.price -= basePrice;
             setCart(updated);
-            sessionStorage.setItem('cart', JSON.stringify(updated));
+            //sessionStorage.setItem('cart', JSON.stringify(updated));
             return;
         }
     }
@@ -83,7 +91,7 @@ export default function Cart({cart, setCart, database, setDatabase, wristSize}){
         <>
             <h2>Your Cart</h2>
             {(!cart || cart.length === 0) && (
-                <p>Your list is empty</p>
+                <p>is empty.</p>
             )}
             {cart && cart.length > 0 && (
         <>            

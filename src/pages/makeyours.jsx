@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 
-export default function MakeYours() {
+export default function MakeYours({cart, setCart}) {
     const [custom, setCustom] = useState([]);
     const [length, setLength] = useState(0);
     const [filtered, setFiltered] = useState([])
@@ -36,9 +36,9 @@ export default function MakeYours() {
     function addToCart(){
         alert('Added to cart!')
         const customPrice = custom.map(piece => piece.price).reduce((acc, num) => acc + num, 0).toFixed(2);
+        console.log(cart)
         
         
-        console.log(customPrice)
         const customItem = {
             key : `custom-${Date.now()}`,
             name : 'Custom',
@@ -48,15 +48,14 @@ export default function MakeYours() {
             items: custom,
             length: length,
         }
-        if(!sessionStorage.getItem('cart')){
-            sessionStorage.setItem('cart', JSON.stringify([customItem]))
-            return;
-        }
-        const storageItems = JSON.parse(sessionStorage.getItem('cart'));
-        const updatedStorage = [...storageItems, customItem];
-        sessionStorage.setItem('cart', JSON.stringify(updatedStorage));
+
+        const updatedStorage = [...cart, customItem];
+        setCart(updatedStorage)
         setCustom([])
+        console.log(cart)
     }
+
+
     function addLength(piece){
         const updated = [...custom, piece];
         const customLength = updated.map(piece => piece.length);
@@ -87,11 +86,10 @@ export default function MakeYours() {
             const next = custom[(i + 1) % custom.length];
             const currentAngle = angle;
             angle += ((item.length + next.length)/ 2)/ circumference * 360;
-            console.log("length: ", item.length)
-            console.log("height: ", item.height)
             return { item, posX, posY, angle: currentAngle, i };
         })
-        console.log(positioned)
+
+
         return(
             <>
                 {positioned.map(({ item, posX, posY, angle, i }) => (
@@ -118,7 +116,7 @@ export default function MakeYours() {
             <h1 className='font '>Make your's</h1>
 
 
-            <svg id='custom-container' width="200" height="200" viewBox="60 60 80 80">
+            <svg id='custom-container' width="250" height="250" viewBox="50 50 100 100">
                   {show()}
             </svg>
 
@@ -154,30 +152,7 @@ export default function MakeYours() {
             </div>
             <section className='loading' hidden={isLoading}>
                 <div className='font'>...Loading</div>
-                <div>Can be 50 seconds or more.</div>
             </section>
         </>
     )
 }
-
-/*
-{custom.map((piece, i) => {
-                    const angle = (2 * Math.PI * i) / custom.length;
-                    const x = (radius + (piece.height)) * Math.cos(angle);
-                    const y = (radius + (piece.height)) * Math.sin(angle);
-                    return(
-                        <img className='custom-pic' 
-                            key={i} 
-                            src={piece.img_url} 
-                            style={{
-                                borderRadius: "50%",
-                                left: x + radius - piece.length * 4,
-                                top: y + radius - piece.height * 4,
-                                position: "absolute", 
-                                width: (piece.length * 4), 
-                                height: (piece.height * 4),
-                                rotate: `${angle * (180 / Math.PI) + 90}deg`,
-                            }} 
-                            onClick={() => remove(i, piece)} />
-                )})}
-*/
