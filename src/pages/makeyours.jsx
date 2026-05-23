@@ -120,7 +120,7 @@ export default function MakeYours({cart, setCart}) {
                   {show()}
             </svg>
 
-            <p className='center'>Your custom items length will be {length}mm.</p>
+            <p className='center'>Your custom items length around {Math.round(length)}mm.</p>
             <div id='msg-btn'>
             {custom.length !== 0 
             ?   <div>
