@@ -95,7 +95,7 @@ export default function Cart({cart, setCart, database, setDatabase, wristSize}){
             )}
             {cart && cart.length > 0 && (
         <>            
-            <p id='balance'>Total: €{balance}<button className='add-btn'><Link to='/checkout'>Checkout</Link></button></p>
+                    <p id='balance'>Total: €{balance}<Link to='/checkout' className='add-btn'>Checkout</Link></p>
             <p>Your wrist size: {wristSize}mm</p>
             <ul>
                 {cart.map((item, index) => (

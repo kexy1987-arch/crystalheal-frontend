@@ -1,11 +1,13 @@
-import { loadStripe } from "@stripe/stripe-js";
+//import { loadStripe } from "@stripe/stripe-js";
 import { Elements, CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { useState } from "react";
 
 
-const stripePromise = loadStripe("pk_test_51T9hlzJ8fuYdHTKZT00SyR4iFu8jwBLkg0Oy93UYHBtaAzdHYotjh6h7JfafKbJTlEYVlWwC3DjlRcn7XrsjGStQ00mYCnhmOB");
+//const stripePromise = loadStripe("pk_test_51T9hlzJ8fuYdHTKZT00SyR4iFu8jwBLkg0Oy93UYHBtaAzdHYotjh6h7JfafKbJTlEYVlWwC3DjlRcn7XrsjGStQ00mYCnhmOB");
 
-function Checkout({wristSize, cart, setCart}) {
+export default function Checkout({ wristSize, cart, setCart }) {
+    const cartItems = cart;
+    console.log(cart)
     const stripe = useStripe();
     const elements = useElements();
     const [name, setName] = useState('');
@@ -14,11 +16,10 @@ function Checkout({wristSize, cart, setCart}) {
     const [addressPostalCode, setAddressPostalCode] = useState('');
     const [county, setCounty] = useState('');
     const [email, setEmail] = useState('');
-    const cartItems = cart;
     const prices = cartItems.map(item => item.price);
     const total = Math.round(prices.reduce((acc, num) => acc + num, 0) * 100);
     const API = import.meta.env.VITE_API_URL;
-
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -151,19 +152,6 @@ function Checkout({wristSize, cart, setCart}) {
                     <p>Payments are handled by Stripe</p>
                 </div>
             </form>
-        </>
-    );
-}
-
-export default function App() {
-    return (
-        <>
-
-            <div id='card-details'>
-                <Elements stripe={stripePromise}>
-                    <Checkout />
-                </Elements>
-            </div>
         </>
     );
 }
