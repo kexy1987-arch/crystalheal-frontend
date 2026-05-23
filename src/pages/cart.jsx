@@ -59,7 +59,6 @@ export default function Cart({cart, setCart, database, setDatabase, wristSize}){
     }
 
     function removeQuantity(item, index) {
-        console.log(item)
         setDatabase(prev =>
             prev.map(p =>
                 p.id === item.id

@@ -7,7 +7,6 @@ import { useState } from "react";
 
 export default function Checkout({ wristSize, cart, setCart }) {
     const cartItems = cart;
-    console.log(cart)
     const stripe = useStripe();
     const elements = useElements();
     const [name, setName] = useState('');
