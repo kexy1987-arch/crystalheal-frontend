@@ -43,7 +43,7 @@ export default function Checkout({ wristSize, cart, setCart }) {
             }),
         });
 
-        const { clientSecret } = await res.json();
+        const { clientSecret, paymentIntentId } = await res.json();
 
         const result = await stripe.confirmCardPayment(clientSecret, {
             payment_method: {
@@ -80,7 +80,8 @@ export default function Checkout({ wristSize, cart, setCart }) {
                     },
                     items: cartItems,
                     amount: total,
-                    wrist: wristSize
+                    wrist: wristSize,
+                    stripe_payment_intent_id: paymentIntentId
                 })
             });
             await fetch(`${API}/update-stock`, {
@@ -88,6 +89,30 @@ export default function Checkout({ wristSize, cart, setCart }) {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ items: cartItems })
             });
+
+            await fetch(`${API}/save-order`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    customer: {
+                        name,
+                        email,
+                        address: {
+                            line1: addressLine1,
+                            line2: county,
+                            city: addressCity,
+                            postal_code: addressPostalCode,
+                            country: "IE",
+                        }
+                    },
+                    items: cartItems,
+                    amount: total,
+                    wrist: wristSize,
+                    stripe_payment_intent_id: paymentIntentId,
+                    currency: "eur",
+                    payment_status: "succeeded"
+                })
+            })
 
             setCart([])
             window.location.href = "/success"
