@@ -47,6 +47,7 @@ export default function MakeYours({cart, setCart}) {
             img_url: "https://nnhlmalelpstnjqdenom.supabase.co/storage/v1/object/public/product-images/pieces/custom.jpg",
             items: custom,
             length: length,
+            done: false,
         }
 
         const updatedStorage = [...cart, customItem];
