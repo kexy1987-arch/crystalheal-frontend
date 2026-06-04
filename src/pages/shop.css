@@ -459,7 +459,7 @@ li{
 
 .showimg{
     width: 90%;
-    max-height: 300px;
+    aspect-ratio: 1/1;
     margin: 10px auto;
     border-radius: 20px;
 }
@@ -468,7 +468,7 @@ li{
     background-color: rgb(63, 0, 71);
     width: fit-content;
     margin: 5px auto;
-    padding: 5px;
+    padding: 15px;
     border-radius: 10px;
 }
 
