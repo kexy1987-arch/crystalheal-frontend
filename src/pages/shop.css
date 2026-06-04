@@ -458,7 +458,7 @@ li{
 }
 
 .showimg{
-    height: 30%;
+    width: 90%;
     max-height: 300px;
     margin: 10px auto;
     border-radius: 20px;
